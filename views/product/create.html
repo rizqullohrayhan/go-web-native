@@ -1,0 +1,37 @@
+{{ template "HEADER" }}
+{{ template "NAVBAR" .isLoggedIn }}
+    <div class="container mt-3">
+      <h2>ADD Product</h2>
+      <hr>
+      <a href="/products" class="btn btn-secondary">Back</a>
+
+      <form class="mt-2" action="/products/add" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="name" class="form-label">Product Name</label>
+          <input type="text" name="name" class="form-control" id="name" autocomplete="off">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select class="form-select" name="category_id">
+            {{ range .categories }}
+            <option value="{{ .Id }}">{{ .Name }}</option>
+            {{ end }}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="text" name="stock" class="form-control" id="stock" autocomplete="off">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Image</label>
+          <input class="form-control" type="file" name="image" accept="image/*" id="formFile">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
+    {{ template "FOOTER" }}
